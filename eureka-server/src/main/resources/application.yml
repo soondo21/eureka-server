@@ -1,0 +1,28 @@
+# -- Server Port
+server:
+  port: 8091
+
+spring:
+  # profiles: peer-1
+  application:
+    name: eureka-server-clustered
+
+# -- Eureka
+# https://github.com/Netflix/eureka/issues/1024
+eureka:
+  instance:
+    hostname: CLTSOSSIFEUREKA01.apps.pas.nhbank.test.nonghyup.com
+    preferIpAddress: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      # defaultZone: http://${eureka.instance.hostname}:8092/eureka/, http://${eureka.instance.hostname}:8093/eureka/
+      # defaultZone: http://localhost:8092/eureka/, http://localhost:8093/eureka/
+      defaultZone: http://localhost:8091/eureka/
+  # Server Service Registry Cache Interval(30초)
+  server:
+    response-cache-update-interval-ms: 30000
+    # registry-sync-retrires: 5     # Peer간 Registry 정보를 얻기위한 재시도 횟수
+    # registry-sync-retry-wait-ms: 500
+    peer-eureka-nodes-update-interval-ms: 15000
